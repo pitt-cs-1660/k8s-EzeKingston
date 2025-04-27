@@ -43,8 +43,8 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-    app: wordpress
-    tier: mysql 
+      app: wordpress
+      tier: mysql 
   template:
     ##
     # Create metadata labels here
@@ -65,13 +65,13 @@ spec:
         - name: MYSQL_DATABASE
           valueFrom:
             configMapKeyRef:
-            name: wordpress-mysql
-            key: database
+              name: wordpress-mysql
+              key: database
         - name: MYSQL_USER
           valueFrom:
             configMapKeyRef:
-            name: wordpress-mysql
-            key: user
+              name: wordpress-mysql
+              key: user
 
         ##
         # mount sensitive environment vars from secret
@@ -80,13 +80,13 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-            name: database
-            key: root-password
+              name: database
+              key: root-password
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
-            name: database
-            key: user-password
+              name: database
+              key: user-password
         ports:
         - containerPort: 3306
           name: mysql
@@ -94,9 +94,9 @@ spec:
       # define volume mounts here, be sure to reference
       # the PVC in your container spec
       ##
-    volumeMounts:
-    - name: mysql-pvc
-      mountPath: /var/lib/mysql 
+        volumeMounts:
+        - name: mysql-pvc
+          mountPath: /var/lib/mysql 
     volumes: 
     - name: mysql-pvc
       persistentVolumeClaim:
@@ -115,4 +115,4 @@ spec:
   storageClassName: standard
   resources:
     requests:
-    storage: 1Gi
+      storage: 1Gi
