@@ -104,7 +104,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: wp-pv-claim
 spec:
-  accessMode:
+  accessModes:
   - ReadWriteOnce
   storageClassName: standard
   resources:
